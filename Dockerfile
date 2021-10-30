@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
-COPY /target/*.war /tmp
+RUN mkdir war_file
+COPY /target/*.war /war_file/
 
 
