@@ -46,7 +46,7 @@ docker rmi -f $(docker images -q)'''
 
     stage('Docker run') {
       steps {
-        sh 'sudo docker run -itd -p 8081:8080 avishai201/hello-world-war:$BUILD_ID'
+        sh 'docker run -itd -p 8081:8080 avishai201/hello-world-war:$BUILD_ID'
       }
     }
 
