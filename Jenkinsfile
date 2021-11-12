@@ -52,7 +52,7 @@ docker rmi -f $(docker images -q) || true'''
 
     stage('Test container before pushing to repo') {
       steps {
-        sh 'basic_test.sh'
+        sh './basic_test.sh'
       }
     }
 
