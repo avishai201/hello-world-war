@@ -75,11 +75,5 @@ exit 0'''
       }
     }
 
-    stage('') {
-      steps {
-        sleep 10
-      }
-    }
-
   }
 }
