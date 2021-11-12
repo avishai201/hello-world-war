@@ -54,6 +54,7 @@ docker rmi -f $(docker images -q) || true'''
       steps {
         sh '''#!/bin/bash
 
+sleep 15
 myip="$(ip route get 8.8.8.8 | sed -n \'/src/{s/.*src *\\([^ ]*\\).*/\\1/p;q}\')"
 echo $myip
 
@@ -71,6 +72,12 @@ exit 0'''
     stage('Push image to DockerHub') {
       steps {
         sh 'docker push avishai201/hello-world-war:$BUILD_ID'
+      }
+    }
+
+    stage('') {
+      steps {
+        sleep 10
       }
     }
 
