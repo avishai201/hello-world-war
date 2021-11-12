@@ -27,7 +27,7 @@ mvn clean package'''
 
     stage('Stop all runinig Containers') {
       steps {
-        sh 'docker stop $(docker ps -aq)'
+        sh 'docker stop $(docker ps -aq) || true'
       }
     }
 
