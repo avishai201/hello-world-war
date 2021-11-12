@@ -21,19 +21,44 @@ pipeline {
     stage('Maven Compile ') {
       steps {
         sh '''mvn compile
-'''
+mvn clean package'''
       }
     }
 
-    stage('Maven Test') {
+    stage('Stop all runinig Containers') {
       steps {
-        sh 'mvn test'
+        sh 'docker stop $(docker ps -aq)'
       }
     }
 
-    stage(' Increment the pom') {
+    stage('Delete all Images&Containers') {
       steps {
-        sh 'mvn build-helper:parse-version versions:set -DnewVersion=1.0.0.$BUILD_ID-SNAPSHOT versions:commit'
+        sh '''docker rm -f $(docker ps -aq)
+docker rmi -f $(docker images -q)'''
+      }
+    }
+
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t avishai201/hello-world-war:$BUILD_ID .'
+      }
+    }
+
+    stage('Docker run') {
+      steps {
+        sh 'sudo docker run -itd -p 8081:8080 avishai201/hello-world-war:$BUILD_ID'
+      }
+    }
+
+    stage('Test container before pushing to repo') {
+      steps {
+        sh 'basic_test.sh'
+      }
+    }
+
+    stage('Push image to DockerHub') {
+      steps {
+        sh 'docker push avishai201/hello-world-war:$BUILD_ID'
       }
     }
 
