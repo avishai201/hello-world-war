@@ -40,13 +40,13 @@ docker rmi -f $(docker images -q) || true'''
 
     stage('Docker Build') {
       steps {
-        sh 'docker build -t avishai201/hello-world-war:$BUILD_ID .'
+        sh 'docker build -t ${reponame}:$BUILD_ID .'
       }
     }
 
     stage('Docker run') {
       steps {
-        sh 'docker run -itd -p 8081:8080 avishai201/hello-world-war:$BUILD_ID'
+        sh 'docker run -itd -p 8081:8080 ${reponame}:$BUILD_ID'
       }
     }
 
@@ -71,9 +71,12 @@ exit 0'''
 
     stage('Push image to DockerHub') {
       steps {
-        sh 'docker push avishai201/hello-world-war:$BUILD_ID'
+        sh 'docker push ${reponame}:$BUILD_ID'
       }
     }
 
+  }
+  environment {
+    reponame = ''
   }
 }
