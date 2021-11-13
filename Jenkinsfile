@@ -77,6 +77,6 @@ exit 0'''
 
   }
   environment {
-    reponame = ''
+    reponame = 'avishai201/hello-world-war'
   }
 }
