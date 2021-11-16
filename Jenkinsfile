@@ -77,7 +77,7 @@ exit 0'''
 
     stage('Slack') {
       steps {
-        slackSend(channel: 'int-project', message: 'https://hub.docker.com/r/avishai201/hello-world-war/tags \n ${env.JOB_NAME} \n ${env.BUILD_NUMBER} \n ${env.BUILD_URL}', notifyCommitters: true, token: 'WBoniVFZfbAefgOzyMSEscli')
+        slackSend(channel: 'int-project', message: 'https://hub.docker.com/r/avishai201/hello-world-war/tags \n ${JOB_NAME} \n ${BUILD_NUMBER} \n ${BUILD_URL}', notifyCommitters: true, token: 'WBoniVFZfbAefgOzyMSEscli')
       }
     }
 
