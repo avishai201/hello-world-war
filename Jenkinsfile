@@ -33,7 +33,4 @@ mvn clean package'''
     }
 
   }
-  environment {
-    reponame = 'avishai201/hello-world-war'
-  }
 }
