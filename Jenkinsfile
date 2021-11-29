@@ -25,9 +25,10 @@ mvn clean package'''
       }
     }
 
-    stage('') {
+    stage('SonarQube') {
       steps {
-        waitForQualityGate(credentialsId: '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', abortPipeline: true)
+        withSonarQubeEnv(credentialsId: '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', installationName: 'SonarQube-Server')
+        waitForQualityGate(webhookSecretId: 'SonarWebHook', credentialsId: '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', abortPipeline: true)
       }
     }
 
