@@ -27,8 +27,7 @@ mvn clean package'''
 
     stage('SonarQube') {
       steps {
-        withSonarQubeEnv(credentialsId: 'SonarQube', installationName: 'SonarQube-Server')
-        waitForQualityGate(webhookSecretId: 'SonarWebHook', credentialsId: 'SonarQube', abortPipeline: true)
+        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=hello-world-war-1.0.0'
       }
     }
 
