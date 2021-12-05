@@ -32,4 +32,7 @@ mvn clean package'''
     }
 
   }
+  environment {
+    sonar_cerd = 'SONAR_TOKEN'
+  }
 }
