@@ -27,7 +27,7 @@ mvn clean package'''
 
     stage('SonarQube') {
       steps {
-        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=hello-world-war-1.0.0'
+        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=avishai201_hello-world-war -Dsonar.login=$SONAR_TOKEN'
       }
     }
 
