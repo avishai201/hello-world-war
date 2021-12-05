@@ -28,7 +28,7 @@ mvn clean package'''
     stage('SonarQube') {
       steps {
         sh '''mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.login=$sonar_cerd
-echo $sonar_cerd'''
+'''
       }
     }
 
