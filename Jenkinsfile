@@ -34,6 +34,6 @@ mvn clean package'''
 
   }
   environment {
-    sonar_cerd = 'SONAR_TOKEN'
+    sonar_cerd = credentials('SONAR_TOKEN')
   }
 }
