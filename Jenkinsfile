@@ -27,13 +27,13 @@ mvn clean package'''
 
     stage('SonarQube') {
       steps {
-        sh '''mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.login=$sonar_cerd
+        sh '''mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.login=$sonar_cred
 '''
       }
     }
 
   }
   environment {
-    sonar_cerd = credentials('SONAR_TOKEN')
+    sonar_cred = credentials('SONAR_TOKEN')
   }
 }
