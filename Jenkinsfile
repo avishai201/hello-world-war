@@ -40,7 +40,9 @@ mvn clean package'''
 
     stage('Push to Nexus') {
       steps {
-        sh 'docker tag helloworld:$BUILD_ID 10.10.10.233:8123/repository/docker-hosted/helloworld:$BUILD_ID'
+        sh '''docker tag helloworld:$BUILD_ID 10.10.10.233:8123/repository/docker-hosted/helloworld:$BUILD_ID
+
+docker push 10.10.10.233:8123/repository/docker-hosted/helloworld:$BUILD_ID'''
       }
     }
 
