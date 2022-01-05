@@ -38,9 +38,9 @@ mvn clean package'''
       }
     }
 
-    stage('Push to Nexus') {
+    stage('Push and tag to Nexus') {
       steps {
-            withDockerRegistry(CredentialsId: 'Nexus' , url: 'http://10.10.10.233:8123/repository/docker-hosted/') {
+            withDockerRegistry(credentialsId: 'Nexus' , url: 'http://10.10.10.233:8123/repository/docker-hosted/') {
         sh '''docker tag helloworld:$BUILD_ID 10.10.10.233:8123/repository/docker-hosted/helloworld:$BUILD_ID
 
                docker push 10.10.10.233:8123/repository/docker-hosted/helloworld:$BUILD_ID'''
