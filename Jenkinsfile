@@ -3,7 +3,10 @@ pipeline {
     node {
       label 'docker-vm'
     }
-
+    triggers {
+    	//Query repository every minute
+    pollSCM('* * * * *')
+    }
   }
   stages {
     stage('Clean before clone') {
