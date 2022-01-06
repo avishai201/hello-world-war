@@ -2,12 +2,13 @@ pipeline {
   agent {
     node {
       label 'docker-vm'
-    triggers {
-    	//Query repository every minute
-    pollSCM('* * * * *')
-    }
     }
   }
+  triggers {
+   //Query repository every minute
+     pollSCM('* * * * *')
+  }
+
   stages {
     stage('Clean before clone') {
       steps {
