@@ -55,8 +55,12 @@ pipeline {
                docker push 10.10.10.226:8123/repository/docker-hosted/helloworld:$BUILD_ID'''
               }
       }
-
     }
+        stage('Remove docker image') {
+          steps {
+            sh 'docker rmi helloworld:$BUILD_ID 10.10.10.226:8123/repository/docker-hosted/helloworld:$BUILD_ID'
+          }
+        }
     }
     post {
      success {
