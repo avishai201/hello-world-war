@@ -4,6 +4,11 @@ pipeline {
       label 'docker-vm'
     }
   }
+    environment {
+      sonar_cred = credentials('SONAR_TOKEN')
+
+    }
+
   triggers {
    //Query repository every minute
      pollSCM('* * * * *')
@@ -35,13 +40,13 @@ pipeline {
 '''
       }
     }
-
+    // Building Docker images
     stage('Docker Build') {
       steps {
         sh 'docker build -t helloworld:$BUILD_ID .'
       }
     }
-
+    // Uploading Docker images into Nexus Registry
     stage('Tag and Push to Nexus') {
       steps {
             withDockerRegistry(credentialsId: 'Nexus' , url: 'http://10.10.10.233:8123/repository/docker-hosted/') {
@@ -61,8 +66,5 @@ pipeline {
      failure {
           slackSend(message: " Build failed - ${env.JOB_NAME} #${env.BUILD_NUMBER} - (${env.BUILD_URL}) ", channel: 'int-project', color: '#FF0000')
      }
-  }
-  environment {
-    sonar_cred = credentials('SONAR_TOKEN')
   }
 }
