@@ -52,7 +52,7 @@ pipeline {
             withDockerRegistry(credentialsId: 'Nexus' , url: 'http://10.10.10.226:8123/repository/docker-hosted/') {
         sh '''docker tag helloworld:$BUILD_ID 10.10.10.226:8123/repository/docker-hosted/helloworld:$BUILD_ID
 
-               docker push 10.10.10.233:8123/repository/docker-hosted/helloworld:$BUILD_ID'''
+               docker push 10.10.10.226:8123/repository/docker-hosted/helloworld:$BUILD_ID'''
               }
       }
 
